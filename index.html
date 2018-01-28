@@ -40,8 +40,9 @@
                     $(this).css({'border':'none'});
                     $('.first').css({'background-color':'transparent'});
 
+                    $('.second_number').css({'display':'block'});
                     drawBezieSecond(a,b);
-                    $('second_number').css({'display':'block'});
+
 
 
                     //drawBezie(a);
@@ -98,8 +99,8 @@
                 ctx = canvas.getContext('2d');
                 ctx.strokeStyle = 'red';
                 ctx.beginPath();
-                ctx.moveTo(0, 200);
-                ctx.quadraticCurveTo(a*40/2, 100, a*40-5, 200);
+                ctx.moveTo(0, 100);
+                ctx.quadraticCurveTo(a*40/2, 50, a*40-5, 100);
 
                 //ctx.moveTo(280-5, 200);
                 //ctx.quadraticCurveTo(7*40-5+4*40/2, 130, 7*40-5+4*40, 200);
@@ -109,8 +110,8 @@
             }
 
             function drawBezieSecond(a,b) {
-                ctx.moveTo(a*40-5, 200);
-                ctx.quadraticCurveTo(a*40-5+b*40/2, 130, a*40-10+b*40, 200);
+                ctx.moveTo(a*40-5, 100);
+                ctx.quadraticCurveTo(a*40-5+b*40/2, 80, a*40-10+b*40, 100);
                 ctx.stroke();
             }
 
@@ -151,7 +152,7 @@
         </div>
     </form>
 
-    <canvas id="canvas" width="500" height="200" style="margin-left: 35px;">
+    <canvas id="canvas" width="500" height="100" style="margin-left: 35px;">
 
     </canvas>
     <div id="parent">

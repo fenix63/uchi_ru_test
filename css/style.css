@@ -9,6 +9,7 @@ img{
 
 .second_number{
     display: none;
+    margin-left: 350px;
 }
 .first, .second, .sign{
     float: left;
@@ -17,7 +18,7 @@ img{
 
 .first_number{
     clear: both;
-
+    margin-left: 150px;
 }
 
 .container{
