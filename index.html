@@ -98,20 +98,51 @@
                 canvas = document.getElementById('canvas');
                 ctx = canvas.getContext('2d');
                 ctx.strokeStyle = 'red';
-                ctx.beginPath();
-                ctx.moveTo(0, 100);
-                ctx.quadraticCurveTo(a*40/2, 50, a*40-5, 100);
+                var startPointX = 0;
+                var startPointY = 100;
 
-                //ctx.moveTo(280-5, 200);
-                //ctx.quadraticCurveTo(7*40-5+4*40/2, 130, 7*40-5+4*40, 200);
+                var controlPointX = a*40/2;
+                var controlPointY = 10;
+
+                var endPointX = a*40-5;
+                var endPointY = 100;
+
+
+                ctx.beginPath();
+                ctx.moveTo(startPointX, startPointY);
+                ctx.quadraticCurveTo(controlPointX, controlPointY, endPointX, endPointY);
+
+                ctx.moveTo(endPointX, endPointY);
+                ctx.lineTo(endPointX-15,endPointY-20);
+                //ctx.moveTo(a*40-5, 100);
+                //ctx.lineTo(a*40-45,95);
+
+                ctx.moveTo(endPointX, endPointY);
+                ctx.lineTo(endPointX-25,endPointY-5);
 
                 ctx.stroke();
 
             }
 
             function drawBezieSecond(a,b) {
-                ctx.moveTo(a*40-5, 100);
-                ctx.quadraticCurveTo(a*40-5+b*40/2, 80, a*40-10+b*40, 100);
+
+                var startPointX = a*40-5;
+                var startPointY = 100;
+
+                var controlPointX = a*40-5+b*40/2;
+                var controlPointY = 50;
+
+                var endPointX = a*40-10+b*40;
+                var endPointY = 100;
+
+                ctx.moveTo(startPointX, startPointY);
+                ctx.quadraticCurveTo(controlPointX, controlPointY, endPointX, endPointY);
+
+                ctx.moveTo(endPointX, endPointY);
+                ctx.lineTo(endPointX-15,endPointY-20);
+                ctx.moveTo(endPointX, endPointY);
+                ctx.lineTo(endPointX-25,endPointY-5);
+
                 ctx.stroke();
             }
 
@@ -132,15 +163,17 @@
 <body>
 
 
-    <div class="first">7</div>
-    <div class="sign">
-        +
-    </div>
-    <div class="second">
-        4
-    </div>
-    <div class="result">
-        =?
+    <div class="example">
+        <div class="first">7</div>
+        <div class="sign">
+            +
+        </div>
+        <div class="second">
+            4
+        </div>
+        <div class="result">
+            =?
+        </div>
     </div>
 
     <form id="form">
