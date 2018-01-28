@@ -1,0 +1,28 @@
+
+img{
+    margin-top:-24px;
+}
+
+.number input, .result input{
+    width: 50px;
+}
+
+.second_number{
+    display: none;
+}
+.first, .second, .sign{
+    float: left;
+
+}
+
+.first_number{
+    clear: both;
+
+}
+
+.container{
+    width:50%;
+
+    margin-left: auto;
+    margin-right: auto;
+}

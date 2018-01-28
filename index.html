@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Uchi.ru</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="js/logic.js"></script>
+    <script src="js/jquery.validate.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            var a = parseInt($('.first').text());
+            var b = parseInt($('.second').text());
+            //alert(typeof(a));
+            var canvas;
+            var ctx;
+
+            drawBezie(a);
+
+            $('.first_number input').keyup(function(){
+
+                var nondigs=/[^\d]/g, val=$(this).val();
+                $(this).val(val.replace(nondigs,''));
+
+
+                if(  parseInt($(this).val()) !=parseInt($('.first').text())    ){
+                    $(this).css({'color':'red'});
+                    $('.first').css({'background-color':'yellow'});
+                }
+                else{
+
+                    //var a = $('.first_number input').val();
+                    //var b = $('.second_number input').val();
+
+                    $(this).attr('disabled','disabled');
+                    $(this).css({'background-color':'transparent'});
+                    $(this).css({'color':'black'});
+                    $(this).css({'border':'none'});
+                    $('.first').css({'background-color':'transparent'});
+
+                    drawBezieSecond(a,b);
+                    $('second_number').css({'display':'block'});
+
+
+                    //drawBezie(a);
+                }
+            });
+
+            $('.second_number input').keyup(function(){
+                var nondigs=/[^\d]/g, val=$(this).val();
+                $(this).val(val.replace(nondigs,''));
+
+                if(  parseInt($(this).val()) !=parseInt($('.second').text())    ){
+                    $(this).css({'color':'red'});
+                    $('.second').css({'background-color':'yellow'});
+                }
+                else{
+                    $(this).attr('disabled','disabled');
+                    $(this).css({'background-color':'transparent'});
+                    $(this).css({'color':'black'});
+                    $(this).css({'border':'none'});
+                    $('.second').css({'background-color':'transparent'});
+
+                    var a = $('.first_number input').val();
+                    var b = $('.second_number input').val();
+                    //drawBezieSecond(a,b);
+
+                    $('.result').text('=');
+                    $('.result').append('<input type="text" maxlength="2"/>');
+                }
+
+            });
+
+            $('.result').on('keyup','input', function(){
+
+                var nondigs=/[^\d]/g, val=$(this).val();
+                $(this).val(val.replace(nondigs,''));
+
+                if(  parseInt($(this).val()) !=
+                parseInt($('.second').text()) + parseInt($('.first').text()))
+                {
+                    $(this).css({'color':'red'});
+                }
+                else{
+                    $(this).attr('disabled','disabled');
+                    $(this).css({'background-color':'transparent'});
+                    $(this).css({'color':'black'});
+                    $(this).css({'border':'none'});
+                }
+            });
+
+
+            function drawBezie(a) {
+
+                canvas = document.getElementById('canvas');
+                ctx = canvas.getContext('2d');
+                ctx.strokeStyle = 'red';
+                ctx.beginPath();
+                ctx.moveTo(0, 200);
+                ctx.quadraticCurveTo(a*40/2, 100, a*40-5, 200);
+
+                //ctx.moveTo(280-5, 200);
+                //ctx.quadraticCurveTo(7*40-5+4*40/2, 130, 7*40-5+4*40, 200);
+
+                ctx.stroke();
+
+            }
+
+            function drawBezieSecond(a,b) {
+                ctx.moveTo(a*40-5, 200);
+                ctx.quadraticCurveTo(a*40-5+b*40/2, 130, a*40-10+b*40, 200);
+                ctx.stroke();
+            }
+
+            function clearCanvas(ctx) {
+                if(ctx!=null)
+                    ctx.clearRect(0, 0, 400, 200);
+            }
+
+
+
+        });
+
+
+
+    </script>
+
+</head>
+<body>
+
+
+    <div class="first">7</div>
+    <div class="sign">
+        +
+    </div>
+    <div class="second">
+        4
+    </div>
+    <div class="result">
+        =?
+    </div>
+
+    <form id="form">
+        <div class="number first_number">
+            <input type="text"  maxlength="1"  />
+        </div>
+        <div class="number second_number">
+            <input type="text"  maxlength="1"  />
+        </div>
+    </form>
+
+    <canvas id="canvas" width="500" height="200" style="margin-left: 35px;">
+
+    </canvas>
+    <div id="parent">
+        <img src="img/sprite.png" alt="">
+    </div>
+
+
+
+
+</body>
+</html>
